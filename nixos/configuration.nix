@@ -24,7 +24,6 @@
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -44,6 +43,18 @@
   { device = "/dev/disk/by-uuid/F46C9B256C9AE222";
     fsType = "ntfs";
     options = [ "nofail" ];
+  };
+  fileSystems."/elements" = 
+  {
+    device = "/dev/dis/by-uuid/F474B7AA74B76DCC";
+    fsType = "ntfs";
+    options = ["nofail"];
+  };
+  fileSystems."/sp" = 
+  {
+    device = "/dev/dis/by-uuid/3610EE6F10EE3611";
+    fsType = "ntfs";
+    options = ["nofail"];
   };
 
   networking.networkmanager.enable = true;
@@ -68,13 +79,13 @@
    i18n.defaultLocale = "en_US.UTF-8";
    console = {
      font = "Lat2-Terminus16";
-     keyMap = "us";
+     useXkbConfig = true;
    };
   # Virtual Box 
    nixpkgs.config.allowUnfree = true;
   # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.docker.enable = true;
+   virtualisation.docker.enable = true;
 
   # Enable tor service
     services.tor.enable = true;
@@ -88,6 +99,9 @@
   # Enable the Plasma 5 Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media"       
+    '';
 
   # Adding windowmanagers
    services.xserver.windowManager = {
@@ -115,6 +129,8 @@
      xkbVariant = ",pes_keypad";
      xkbOptions = "grp:alt_shift_toggle";
    };
+
+
 
    # Enable CUPS to print documents.
    #services.printing.enable = true;
@@ -147,6 +163,7 @@ fonts.fonts = with pkgs; [
   proggyfonts
 ];
 
+programs.zsh.enable = true;
 
 users.users.murtuz.shell = pkgs.zsh;
 users.defaultUserShell = pkgs.zsh;

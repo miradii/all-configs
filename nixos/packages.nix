@@ -40,6 +40,9 @@ pkgs: with pkgs; [
 # man pages
   pkgs.man-pages
   pkgs.man-pages-posix
+# utils
+udisks
+usbutils
 # a general purpose syntax highliter written in go
   chroma
   ]

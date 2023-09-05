@@ -8,7 +8,7 @@
 # programs
 
   programs = { 
-	  neovim = import ./neovim.nix pkgs;
+	  # neovim = import ./neovim.nix pkgs;
 	  zsh = import ./zsh.nix pkgs;
 	  home-manager.enable = true;
   };

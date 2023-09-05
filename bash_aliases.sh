@@ -16,8 +16,8 @@ alias aliases="vim ~/configs/bash/bash_aliases.sh"
 alias sus="systemctl suspend"
 
 # vim
-#alias vi="nvim"
-#alias vim ="nvim"
+alias vi="nvim"
+alias vim ="nvim"
 alias vimconf="vi ~/configs/nvim/init.lua"
 
 # important folders
@@ -53,14 +53,11 @@ alias tn="tmux new -s" # start a named session useage: tn <session-name>
 alias tls="tmux ls" # show all sessions
 alias tat="tmux at" # attacth to last session
 alias tan="tmux at -t" # attacth to named session usage: tan <session-name>
-alias tas= "tmux switch-client -t" # switch to another session with ts <session-name>
-
 
 
 # ---- nix related commands
 alias webshell="nix-shell ~/shells/web_shell.nix "
 alias pyshell="nix-shell ~/shells/py_shell.nix "
-alias nixc="cd /etc/nixos/ & sudo vi ."
 
 # golang
 alias air="~/go/bin/air"

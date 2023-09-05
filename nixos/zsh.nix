@@ -4,8 +4,8 @@ with pkgs; {
 		  enableCompletion = true;
 		  enableSyntaxHighlighting = true;
 		  historySubstringSearch.enable = true;
-		  historySubstringSearch.searchDownKey = "j";
-		  historySubstringSearch.searchUpKey = "k";
+		  #historySubstringSearch.searchDownKey = "^j";
+		  #historySubstringSearch.searchUpKey = "^k";
 
 		  plugins = [
 
@@ -41,13 +41,14 @@ with pkgs; {
 		  };
 		  oh-my-zsh = {
 			  enable = true;
-			  plugins = [ "git" "thefuck" "web-search" "themes" "tmux" "copyfile" "dirhistory" "colored-man-pages" "emacs" "common-aliases" "colorize" "fastfile"  "history-substring-search" "zsh-interactive-cd"  "zsh-navigation-tools" ];
+			  plugins = [ "git" "z" "thefuck" "web-search" "themes" "tmux" "copyfile" "dirhistory" "colored-man-pages" "emacs" "common-aliases" "colorize" "fastfile"  "history-substring-search" "zsh-interactive-cd"  "zsh-navigation-tools" "vi-mode" ];
 			  theme = "af-magic";
 		  };
 		  initExtra = ''
-			  source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-			  source ~/configs/bash/bash_aliases.sh
-			  source ~/configs/bash/paths.sh
+			  #source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+			  source $HOME/configs/bash/bash_aliases.sh
+			  source $HOME/configs/bash/paths.sh
+			  source $HOME/configs/bash/profile
 			  '';
 }
 
